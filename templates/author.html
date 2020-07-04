@@ -95,10 +95,10 @@
           <div class="row">
             <div>
               {% if user.profile.thumbnail_image %}
-              <img src="{{user.profile.thumbnail_image.url}}" alt="Profile image" id="profile"
+              <img src="{{user.profile.thumbnail_image.url}}" alt="Profile image"
                 style="width: 50px; border-radius: 50%;">
               {% else %}
-              <img src="{%static 'images/profile_pic.jpg'%}" alt="Profile image" id="profile"
+              <img src="{%static 'images/profile_pic.jpg'%}" alt="Profile image"
                 style="width: 50px; border-radius: 50%;">
               {%endif%}
 

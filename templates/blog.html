@@ -11,28 +11,21 @@
     <div class="title_recipes">
       <h1 style="font-size: 26px !important; color: #222 !important;">
         {{make.recipe_name}} {% if make.food_type == 'vegetarian'%}
-        <img
-          src="{%static 'images/veg.png'%}"
-          alt="vegetarian"
-          style="width: 20px;"
-        />
+        <img src="{%static 'images/veg.png'%}" alt="vegetarian" style="width: 20px;" />
         {%else%}
-        <img
-          src="{%static 'images/non-veg.png'%}"
-          alt="non-vegetarian"
-          style="width: 20px;"
-        />
+        <img src="{%static 'images/non-veg.png'%}" alt="non-vegetarian" style="width: 20px;" />
         {% endif %}
       </h1>
     </div>
     <div class="author detail">
       <div class="row">
         <div>
-          <img
-            src="{%static 'images/ip-3.jpg' %}"
-            alt="profile image"
-            style="width: 50px; border-radius: 50%;"
-          />
+          {% if user.profile.thumbnail_image %}
+          <img src="{{user.profile.thumbnail_image.url}}" alt="Profile image" style="width: 50px; border-radius: 50%;">
+          {% else %}
+          <img src="{%static 'images/profile_pic.jpg'%}" alt="Profile image" style="width: 50px; border-radius: 50%;">
+          {%endif%}
+
         </div>
         <div class="mx-2">
           <h5 style="margin-bottom: 0;">
@@ -52,31 +45,31 @@
 <!-- catogery -->
 <div class="row">
   <div class="col-md-8 col-xs-12">
-        <div class="row justify-content-center">
-          <button class="mx-1 btn btn-sm btn-outline-info" disabled>
-            <p style="color: black; margin-bottom: 0;">
-              Difficulty: {{make.difficulty}}
-            </p>
-          </button>
-          <button class="mx-1 btn btn-sm btn-outline-info" disabled>
-            <p style="color: black; margin-bottom: 0;">Food Type:{{make.menu}}</p>
-          </button>
-          <button class="mx-1 btn btn-sm btn-outline-info" disabled>
-            <p style="color: black; margin-bottom: 0;">Serve: {{make.serve}}</p>
-          </button>
-          <button class="mx-1 btn btn-sm btn-outline-info" disabled>
-            <p style="color: black; margin-bottom: 0;">Type: {{make.menu}}</p>
-          </button>
-          <button class="mx-1 btn btn-sm btn-outline-info" disabled>
-            <p style="color: black; margin-bottom: 0;">Time: {{text_time}}</p>
-          </button>
-        </div>
-    
+    <div class="row justify-content-center">
+      <button class="mx-1 btn btn-sm btn-outline-info" disabled>
+        <p style="color: black; margin-bottom: 0;">
+          Difficulty: {{make.difficulty}}
+        </p>
+      </button>
+      <button class="mx-1 btn btn-sm btn-outline-info" disabled>
+        <p style="color: black; margin-bottom: 0;">Food Type:{{make.menu}}</p>
+      </button>
+      <button class="mx-1 btn btn-sm btn-outline-info" disabled>
+        <p style="color: black; margin-bottom: 0;">Serve: {{make.serve}}</p>
+      </button>
+      <button class="mx-1 btn btn-sm btn-outline-info" disabled>
+        <p style="color: black; margin-bottom: 0;">Type: {{make.menu}}</p>
+      </button>
+      <button class="mx-1 btn btn-sm btn-outline-info" disabled>
+        <p style="color: black; margin-bottom: 0;">Time: {{text_time}}</p>
+      </button>
+    </div>
+
   </div>
 </div>
 
 <!-- like edit delete -->
-<div  class="row">
+<div class="row">
   <div class="col-md-8 col-xs-12">
     <div class="d-flex">
       <div class="mr-auto p-2">
@@ -105,11 +98,12 @@
         </form>
       </div>
       <div class="p-2">{% if user.id is make.author.id %} {% if user.is_authenticated %}
-      <a href="{% url 'update_post' make.pk %}" class="btn btn-sm btn-outline-info" role="button" aria-pressed="true">edit</a>
-      <a href="{% url 'delete_post' make.pk %}" class="btn btn-sm btn-outline-danger" role="button"
-        aria-pressed="true">Delete</a>
-      {% endif %} {% endif %}
-    </div>
+        <a href="{% url 'update_post' make.pk %}" class="btn btn-sm btn-outline-info" role="button"
+          aria-pressed="true">edit</a>
+        <a href="{% url 'delete_post' make.pk %}" class="btn btn-sm btn-outline-danger" role="button"
+          aria-pressed="true">Delete</a>
+        {% endif %} {% endif %}
+      </div>
 
     </div>
     <hr>
@@ -118,39 +112,33 @@
 
 
 
+<br />
+<div class="card shadow-lg p-3 mb-5 rounded">
+  <div class="card-body">
+    <h3 class="text-center"><strong>Ingredients</strong></h3>
     <br />
-    <div class="card shadow-lg p-3 mb-5 rounded">
-      <div class="card-body">
-        <h3 class="text-center"><strong>Ingredients</strong></h3>
-        <br />
-        {{make.ingredients|safe}}
-      </div>
-    </div>
-
-    <br />
-    <div class="card shadow-lg warning p-3 mb-5 rounded">
-      <div class="card-body">
-        <h3 class="text-center"><strong>Procedure</strong></h3>
-        <br />
-        {{make.procedure|safe}}
-      </div>
-    </div>
-    Recipe Tags:
-    <br />
-    {% for tag in make.tags.all %}
-    <a href="{% url 'tagged' tag.slug %}" class="mr-1 btn btn-sm btn-outline-info">#{{ tag }}</a>
-    {% endfor %}
-    
-    <br />
-    <br />
-
-    <a
-      href="{% url 'all_post'%}"
-      class="btn btn-outline-secondary"
-      role="button"
-      aria-pressed="true"
-      >Back</a
-    >
-{%endblock %}
+    {{make.ingredients|safe}}
   </div>
+</div>
+
+<br />
+<div class="card shadow-lg warning p-3 mb-5 rounded">
+  <div class="card-body">
+    <h3 class="text-center"><strong>Procedure</strong></h3>
+    <br />
+    {{make.procedure|safe}}
+  </div>
+</div>
+Recipe Tags:
+<br />
+{% for tag in make.tags.all %}
+<a href="{% url 'tagged' tag.slug %}" class="mr-1 btn btn-sm btn-outline-info">#{{ tag }}</a>
+{% endfor %}
+
+<br />
+<br />
+
+<a href="{% url 'all_post'%}" class="btn btn-outline-secondary" role="button" aria-pressed="true">Back</a>
+{%endblock %}
+</div>
 </div>
