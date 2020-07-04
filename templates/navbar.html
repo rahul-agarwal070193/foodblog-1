@@ -1,0 +1,77 @@
+{%load static %} {% block content %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <a class="navbar-brand" href="{% url 'about' %}" style="font-family: 'Pacifico'; font-size: 22px;">Foodblog</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <!-- <li class="nav-item">
+        <a class="nav-link" href="{% url 'home' %}">Home 2</a>
+      </li> -->
+      <!-- <li class="nav-item">
+        <a class="nav-link" href="{% url 'coursel' %}">Contact</a>
+      </li> -->
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'all_post' %}"><i class="fa fa-home"></i> Home</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false"><i class="fas fa-utensils"></i> Recipes
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="{% url 'recipes' name='Breakfast' %}"><img
+              src="{%static 'images/breakfast_grey.png'%}" alt="breakfast_grey.png" />
+            Breakfast</a>
+          <a class="dropdown-item" href="{% url 'recipes' name='Lunch' %}"><img src="{%static 'images/lunch_grey.png'%}"
+              alt="lunch_grey.png" />Lunch</a>
+          <a class="dropdown-item" href="{% url 'recipes' name='Quickbite' %}"><img
+              src="{%static 'images/salad_grey.png'%}" alt="salad_grey.png" />Quickbite</a>
+          <a class="dropdown-item" href="{% url 'recipes' name='Dinner' %}"><img
+              src="{%static 'images/dinner_grey.png'%}" alt="dinner_grey.png" />Dinner</a>
+          <a class="dropdown-item" href="{% url 'recipes' name='Dessert' %}"><img
+              src="{%static 'images/dessert_grey.png'%}" alt="dessert_grey.png" />Dessert</a>
+          <a class="dropdown-item" href="{% url 'recipes' name='Beverage' %}"><img
+              src="{%static 'images/beverage_grey.png'%}" alt="beverage_grey.png" />Beverage</a>
+        </div>
+      </li>
+      {% if user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'add_post'%}"><i class="fa fa-upload"></i> Add post</a>
+      </li>
+      {%endif%}
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      {% if user.is_authenticated %}
+      <div class="btn-group">
+        <a href="{% url 'user_profile' user.username user.id %}" class="btn btn-info" role="button"
+          aria-disabled="true">{{user.first_name }} {{user.last_name}}
+        </a>
+        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+          <span class="caret"></span>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="{% url 'user_profile' user.username user.id %}"><i class="fas fa-user"></i>
+            Profile</a>
+          <a class="dropdown-item" href="{% url 'edit_profile'%}"><i class="fas fa-user-edit"></i> Edit Profile</a>
+          <a class="dropdown-item" href="{% url 'password_change'%}">
+            <i class="fa fa-key" aria-hidden="true"></i> Change Password
+          </a>
+          <a class="dropdown-item" href="{% url 'logout'%}"><i class="fas fa-door-open"></i> Logout</a>
+        </div>
+      </div>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'register'%}"><i class="fa fa-user-plus" aria-hidden="true"> Register</i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}"><i class="fa fa-user" aria-hidden="true"> Login</i></a>
+      </li>
+
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+
+{% endblock %}

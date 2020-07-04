@@ -1,0 +1,46 @@
+{% extends "base.html" %} {% block title %} tag | {{slug}}{% endblock %} <br />
+{% block content %} {%load static%}
+<div class="row">
+  {% for post in posts %}
+  <div class="col-md-6 col-lg-4">
+    <div class="card shadow p-3 mb-5 bg-white rounded">
+      <div class="card-block">
+        <img
+          class="card-img-top img-fluid"
+          src="{% static 'images/ip-3.jpg' %}"
+          alt="thumbnail"
+        />
+        <h3 style="text-align: center;">
+          <strong>{{post.recipe_name}} </strong>
+        </h3>
+        <p>{{post.short_description|truncatewords:10}}</p>
+
+        <div class="row">
+          <div>
+            <img
+              src="{%static 'images/ip-3.jpg' %}"
+              alt="profile image"
+              style="width: 50px; border-radius: 50%;"
+            />
+          </div>
+          <div class="mx-2">
+            <p></p>
+            <p>
+              <strong>{{post.author}}</strong>
+            </p>
+          </div>
+        </div>
+        <br />
+        <a
+          href="{% url 'blog_detail' post.pk %}"
+          class="btn btn-outline-info col-12"
+          role="button"
+          aria-pressed="true"
+          >View Recipe</a
+        >
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

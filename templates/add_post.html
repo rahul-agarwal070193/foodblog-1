@@ -1,0 +1,24 @@
+{% extends 'base.html'%}
+{% block title %}
+Add recipe
+{%endblock%}
+{%block content %}
+
+<h3>Add Recipe</h3>
+<hr>
+<div class="form-group ">
+  <form method="POST" enctype="multipart/form-data">
+    {%csrf_token%}
+    <!-- {{form.media}} -->
+
+    {{form.as_p}}
+
+    <button class="btn btn-outline-secondary">Sumbit</button>
+
+</div>
+<script>
+  var name = '{{user.id}}'
+  document.getElementById("hidden").value = name; 
+</script>
+
+{% endblock %}

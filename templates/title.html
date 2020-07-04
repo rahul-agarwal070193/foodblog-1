@@ -1,0 +1,22 @@
+{% extends "base.html" %} {% block content %} {%load static%}
+
+<div class="cointainer px-5">
+  <video width="100%" height="auto" controls>
+    <source src="{% static 'video/movie.mp4'%}" type="video/mp4" />
+  </video>
+  <hr />
+</div>
+<div class="cointainer-fluid">
+  <div class="row justify-content-sm-end">
+    <div class="col-xs-1">
+      <button class="btn btn-block btn-primary">Like</button>
+    </div>
+    <div class="col-xs-1">
+      <button class="btn btn-block btn-primary">Dislike</button>
+    </div>
+    <div class="col-lg-12">
+      <h3>title</h3>
+    </div>
+  </div>
+</div>
+{% endblock %}

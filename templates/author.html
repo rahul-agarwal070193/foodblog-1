@@ -1,0 +1,116 @@
+{% extends 'base.html'%} {% block content %} {%load static%} <br />
+
+<style>
+  .jumbotron {
+    background-size: cover;
+    color: white;
+    background-repeat: repeat-y;
+  }
+
+  #profile {
+    border-radius: 50%;
+    background: #fff;
+    width: 85% !important;
+    float: left;
+    border: solid 5px #5bc0de;
+  }
+</style>
+<div class="container-fluid">
+  <div class="jumbotron jumbotron-fluid" style="background-image: url('{%static 'images/edit_profile_bg.png'%}');">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-4">
+          <br>
+          {% if user.profile.thumbnail_image %}
+          <img src="{{user.profile.thumbnail_image.url}}" alt="Profile image" id="profile">
+          {% else %}
+          <img src="{%static 'images/profile_pic.jpg'%}" alt="Profile image" id="profile">
+          {%endif%}
+        </div>
+        <div class="col-xs-12 col-sm-8 col-md-8 no-padding">
+          <br>
+          <h1>{{user.first_name|capfirst}} {{user.last_name|capfirst}}</h1>
+
+          <!-- facebook -->
+          {%if user.profile.facebook_url %}
+          <a href="{{user.profile.facebook_url}} " class="mx-1" target="_blank" rel="noopener noreferrer"><i
+              class='fab fa-facebook' style="font-size:24px "></i></a>
+          {%else%}
+          <a href="#" class="mx-1" style="color: gray;"><i class='fab fa-facebook' style="font-size:24px "></i></a>
+          {%endif%}
+
+          <!-- instagram -->
+          {%if user.profile.instagram_url %}
+          <a href="{{user.profile.instagram_url}}" class="mx-1" target="_blank" rel="noopener noreferrer"><i
+              class="fab fa-instagram" style="font-size:24px"></i></a>
+          {%else%}
+          <a href="#" class="mx-1" style="color: gray;"><i class="fab fa-instagram" style="font-size:24px"></i></a>
+          {%endif%}
+
+          <!-- mail -->
+
+          <a href="mailto:{{user.email}}" class="mx-1"><i class="fa fa-envelope" style="font-size:24px"></i></a>
+
+
+          <!-- snapchat -->
+          {%if user.profile.snapchat_url %}
+          <a href="{{user.profile.snapchat_url}}" class="mx-1"><i class="fab fa-snapchat"
+              style="font-size:24px"></i></a>
+          {%else%}
+          <a href="#" class="mx-1" style="color: gray;"><i class="fab fa-snapchat" style="font-size:24px"></i></a>
+          {%endif%}
+
+
+
+
+          <hr>
+          <p style="text-align: justify; " class="mx-1">{{ user.profile.bio}}
+          </p>
+          <br>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="recipes_by_chef">
+    <p class="text-center display-4 "><strong>Your Recipes</strong></p>
+
+  </div>
+  <br>
+  <div class="row">
+
+    {% for posts in user_post %}
+
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow p-3 mb-5 bg-white rounded">
+        <div class="card-block">
+          <img class="card-img-top img-fluid" src="{{posts.thumbnail_image.url}}" alt="thumbnail" />
+          <h3 style="text-align: center;">
+            <strong>{{posts.recipe_name}} </strong>
+          </h3>
+          <p>{{posts.short_description|slice:":255"}}</p>
+
+          <div class="row">
+            <div>
+              <img src="{%static 'images/ip-3.jpg' %}" alt="profile image" style="width: 50px; border-radius: 50%;">
+            </div>
+            <div class=" mx-2">
+              <p></p>
+              <p><strong>{{user.first_name|capfirst}} {{user.last_name|capfirst}}</strong></p>
+            </div>
+          </div>
+          <br>
+          <a href="{% url 'blog_detail' posts.pk %}" class="btn btn-outline-info col-12" role="button"
+            aria-pressed="true">View Recipe</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+{% endblock%}
+</div>

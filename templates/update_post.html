@@ -1,0 +1,44 @@
+{% extends 'base.html'%}
+{% block title %}
+edit recipie
+{%endblock%}
+{%block content %}
+
+{% if user.is_authenticated %}
+    {% if user.id is make.author.id %}
+        <h3>edit recipie</h3>
+        <div class="form-group ">
+            <form method="POST"  enctype="multipart/form-data">
+                {%csrf_token%} {{form.media}} {{form.as_p}}
+                <button class="btn btn-outline-secondary">Update</button>
+        </div>
+    {% else %}
+        <div class="jumbotron" style="background-color: #9ce4ea;">
+            <h1 class="display-4 text-center font-weight-bold">
+                404 - The page cannot be found
+            </h1>
+            <p class="lead text-center">
+                The site configured at this address does not contain the requested file.
+            </p>
+            <hr class="my-4" />
+            <p class="lead">
+                We cannot find the page you are looking for.
+            </p>
+            <p class="lead">
+                It might have been removed, had its name changed, or is temporarily
+                unavailable.
+            </p>
+        
+            <p class="lead">
+                Please check that the Website address is spelled correctly. Or go to our
+                home page, and use the menus to navigate to a specific section.
+            </p>
+        
+            <a class="btn btn-primary btn-lg" href="{% url 'all_post'%}" role="button">Home</a>
+        </div>
+
+    {% endif %}
+{% else %}
+<p> login to edit post </p>
+{% endif %}
+{% endblock %}
