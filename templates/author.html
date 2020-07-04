@@ -94,7 +94,14 @@
 
           <div class="row">
             <div>
-              <img src="{%static 'images/ip-3.jpg' %}" alt="profile image" style="width: 50px; border-radius: 50%;">
+              {% if user.profile.thumbnail_image %}
+              <img src="{{user.profile.thumbnail_image.url}}" alt="Profile image" id="profile"
+                style="width: 50px; border-radius: 50%;">
+              {% else %}
+              <img src="{%static 'images/profile_pic.jpg'%}" alt="Profile image" id="profile"
+                style="width: 50px; border-radius: 50%;">
+              {%endif%}
+
             </div>
             <div class=" mx-2">
               <p></p>

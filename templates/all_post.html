@@ -371,11 +371,7 @@
   <div class="col-md-6 col-lg-4">
     <div class="card shadow p-3 mb-5 bg-white rounded">
       <div class="card-block">
-        <img
-          class="card-img-top img-fluid"
-          src="{{post.thumbnail_image.url}}"
-          alt="thumbnail"
-        />
+        <img class="card-img-top img-fluid" src="{{post.thumbnail_image.url}}" alt="thumbnail" />
         <h3 style="text-align: center;">
           <strong>{{post.recipe_name}} </strong>
         </h3>
@@ -383,11 +379,14 @@
 
         <div class="row">
           <div>
-            <img
-              src="{%static 'images/ip-3.jpg' %}"
-              alt="profile image"
-              style="width: 50px; border-radius: 50%;"
-            />
+            {% if post.user.profile.thumbnail_image %}
+            <img src="{{post.user.profile.thumbnail_image.url}}" alt="Profile image" id="profile"
+              style="width: 50px; border-radius: 50%;">
+            {% else %}
+            <img src="{%static 'images/profile_pic.jpg'%}" alt="Profile image" id="profile"
+              style="width: 50px; border-radius: 50%;">
+            {%endif%}
+
           </div>
           <div class="mx-2">
             <p></p>
@@ -397,13 +396,8 @@
           </div>
         </div>
         <br />
-        <a
-          href="{% url 'blog_detail' post.pk %}"
-          class="btn btn-outline-info col-12"
-          role="button"
-          aria-pressed="true"
-          >View Recipe</a
-        >
+        <a href="{% url 'blog_detail' post.pk %}" class="btn btn-outline-info col-12" role="button"
+          aria-pressed="true">View Recipe</a>
       </div>
     </div>
   </div>
@@ -412,36 +406,12 @@
 <div class="pagination justify-content-center">
   <span class="step-links">
     {% if page_obj.has_previous %}
-    <a
-      href="?page=1"
-      class="btn btn-outline-info"
-      role="button"
-      aria-pressed="true"
-      >&laquo;first</a
-    >
-    <a
-      href="?page={{ page_obj.previous_page_number }}"
-      class="btn btn-outline-info"
-      role="button"
-      aria-pressed="true"
-      >previous</a
-    >
+    <a href="?page=1" class="btn btn-outline-info" role="button" aria-pressed="true">&laquo;first</a>
+    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-info" role="button"
+      aria-pressed="true">previous</a>
     {%else%}
-    <a
-      href="#"
-      class="btn btn-outline-info disabled"
-      disabled
-      role="button"
-      aria-pressed="true"
-      >&laquo;first</a
-    >
-    <a
-      href="#"
-      class="btn btn-outline-info disabled"
-      role="button"
-      aria-pressed="true"
-      >previous</a
-    >
+    <a href="#" class="btn btn-outline-info disabled" disabled role="button" aria-pressed="true">&laquo;first</a>
+    <a href="#" class="btn btn-outline-info disabled" role="button" aria-pressed="true">previous</a>
     {% endif %}
 
     <span class="current">
@@ -449,36 +419,13 @@
     </span>
 
     {% if page_obj.has_next %}
-    <a
-      href="?page={{ page_obj.next_page_number }}"
-      class="btn btn-outline-info"
-      role="button"
-      aria-pressed="true"
-      >next</a
-    >
-    <a
-      href="?page={{ page_obj.paginator.num_pages }}"
-      class="btn btn-outline-info"
-      role="button"
-      aria-pressed="true"
-      >last&raquo;</a
-    >
+    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-info" role="button"
+      aria-pressed="true">next</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-info" role="button"
+      aria-pressed="true">last&raquo;</a>
     {%else%}
-    <a
-      href="#"
-      class="btn btn-outline-info disabled"
-      disabled
-      role="button"
-      aria-pressed="true"
-      >next</a
-    >
-    <a
-      href="#"
-      class="btn btn-outline-info disabled"
-      role="button"
-      aria-pressed="true"
-      >last&raquo;</a
-    >
+    <a href="#" class="btn btn-outline-info disabled" disabled role="button" aria-pressed="true">next</a>
+    <a href="#" class="btn btn-outline-info disabled" role="button" aria-pressed="true">last&raquo;</a>
     {% endif %}
   </span>
 </div>
