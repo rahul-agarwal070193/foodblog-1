@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'xc!6f66l^(d6u^kdzib8y#cwx0prwnx2@cr5wnt7p8oj$oquh8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['rah070-foodblog.herokuapp.com', '127.0.0.1']
 
@@ -146,6 +146,8 @@ LOGIN_REDIRECT_URL = 'all_post'
 LOGOUT_REDIRECT_URL = 'all_post'
 
 # ck editor
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
+CKEDITOR_RESTRICT_BY_USER = True
 CKEDITOR_CONFIGS = {
     'default': {
         "removePlugins": "stylesheetparser",

@@ -9,6 +9,5 @@ urlpatterns = [
     path('', include("home.urls")),
     path('members/', include("django.contrib.auth.urls")),
     path('members/', include("members.urls")),
-
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 handler404 = 'home.views.error'
