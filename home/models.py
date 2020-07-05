@@ -59,8 +59,8 @@ class make(models.Model):
     menu = models.CharField(
         max_length=15,
         choices=menu_type, default='Dessert')
-    ingredients = RichTextField()
-    procedure = RichTextField()
+    ingredients = models.TextField()
+    procedure = models.TextField()
     tags = TaggableManager()
     likes = models.ManyToManyField(User, related_name='blog_posts', blank=True)
     preparation_time = models.PositiveIntegerField()
