@@ -1,7 +1,44 @@
-{% extends 'base.html'%} {% block title %} Recipes- {{name}} {%endblock%}
+{% extends 'base.html'%}
+{%load static%} {% block title %} Recipes- {{name}} {%endblock%}
 {%block content %}
-<h3>{{name}}</h3>
+<h3 class="text-center" style="font-size: 30px;">{{name}} Recipes</h3>
+<p class="text-center" style="font-size: 13px;">Explore parts unknown with our eclectic collection of recipes</p>
 <hr />
-{{recipes}} {% for item in recipes %} <br />{{item.menu}} <br />
-<h3>{{item.author}}</h3>
-{% endfor %} {% endblock %}
+<div class="row">
+    {% for post in recipes %}
+    <div class="col-md-6 col-lg-4">
+        <div class="card shadow p-3 mb-5 bg-white rounded">
+            <div class="card-block">
+                <img class="card-img-top img-fluid" src="{{post.thumbnail_image.url}}" alt="thumbnail" />
+                <h3 style="text-align: center;">
+                    <strong>{{post.recipe_name}} </strong>
+                </h3>
+                <p>{{post.short_description|truncatewords:10}}</p>
+
+                <div class="row">
+                    <div>
+                        {% if post.user.profile.thumbnail_image %}
+                        <img src="{{post.user.profile.thumbnail_image.url}}" alt="Profile image"
+                            style="width: 50px; border-radius: 50%;">
+                        {% else %}
+                        <img src="{%static 'images/profile_pic.jpg'%}" alt="Profile image"
+                            style="width: 50px; border-radius: 50%;">
+                        {%endif%}
+
+                    </div>
+                    <div class="mx-2">
+                        <p></p>
+                        <p>
+                            <strong>{{post.author}}</strong>
+                        </p>
+                    </div>
+                </div>
+                <br />
+                <a href="{% url 'blog_detail' post.pk %}" class="btn btn-outline-info col-12" role="button"
+                    aria-pressed="true">View Recipe</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
