@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'xc!6f66l^(d6u^kdzib8y#cwx0prwnx2@cr5wnt7p8oj$oquh8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['rah070-foodblog.herokuapp.com', '127.0.0.1']
 
@@ -86,8 +86,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'foodblog',
-        'PASSWORD': '',
-        'HOST': '',
+        'PASSWORD': 'Promode.1',
+        'HOST': 'rah070.cbku7mbidlcy.ap-south-1.rds.amazonaws.com',
         'USER': 'Rahul',
         'PORT': '5432',
 
@@ -176,14 +176,14 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'foodblogteam@gmail.com'
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_PASSWORD = 'Promode.1'
 
 
 # S3 BUCKETS CONFIG
 
-AWS_ACCESS_KEY_ID = ''
-AWS_SECRET_ACCESS_KEY = ''
-AWS_STORAGE_BUCKET_NAME = ''
+AWS_ACCESS_KEY_ID = 'AKIA4ILFHKOTDFENHYSX'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'rah070-foodblog-1'
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 # AWS_QUERYSTRING_AUTH = False
