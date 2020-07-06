@@ -86,9 +86,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'foodblog',
-        'PASSWORD': 'Promode.1',
-        'HOST': 'rah070.cbku7mbidlcy.ap-south-1.rds.amazonaws.com',
-        'USER': 'Rahul',
+        'PASSWORD': '',
+        'HOST': '',
+        'USER': '',
         'PORT': '5432',
 
     }
@@ -175,15 +175,15 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'foodblogteam@gmail.com'
-EMAIL_HOST_PASSWORD = 'Promode.1'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 
 
 # S3 BUCKETS CONFIG
 
-AWS_ACCESS_KEY_ID = 'AKIA4ILFHKOTDFENHYSX'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'rah070-foodblog-1'
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_ACCESS_KEY = ''
+AWS_STORAGE_BUCKET_NAME = ''
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 # AWS_QUERYSTRING_AUTH = False
